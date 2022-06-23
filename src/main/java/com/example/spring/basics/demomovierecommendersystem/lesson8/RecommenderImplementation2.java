@@ -1,17 +1,18 @@
-package com.example.spring.basics.demomovierecommendersystem.lesson5;
+package com.example.spring.basics.demomovierecommendersystem.lesson8;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 // Autowiring by name
 
 @Component
-public class RecommenderImplementation {
+public class RecommenderImplementation2 {
     
     // use filter interface to select filter
     @Autowired
-    private Filter contentBasedFilter; //Autowiring by name
-    // Default bean name is the class name with the first letter in lowercase.
+    @Qualifier("CF")
+    private Filter filter;
     
     /*
     public RecommenderImplementation(Filter filter) {
@@ -19,6 +20,13 @@ public class RecommenderImplementation {
         this.contentBasedFilter = filter;
     }
     */
+    
+    @Autowired
+    @Qualifier("contentBasedFilter")
+    public void setFilter(Filter filter) {
+        this.filter = filter;
+        System.out.println("Setter method invoked..");
+    }
     
     // use a filter to find the recommendations
     public String[] recommendMovies(String movie) {
@@ -29,8 +37,10 @@ public class RecommenderImplementation {
         //Filter filter = new ContentBasedFilter();
         
         // print the name of interface implementation being used
-        System.out.println("Name of the filter in use: " + contentBasedFilter + "\n");
-        String[] results = contentBasedFilter.getRecommendations("Finding Dory");
+        //System.out.println("Name of the filter in use: " + contentBasedFilter + "\n");
+        System.out.println("Name of the filter in use: " + filter + "\n");
+        //String[] results = contentBasedFilter.getRecommendations("Finding Dory");
+        String[] results = filter.getRecommendations("Finding Dory");
         
         // return the results
         //return new String[] {"m1", "m2", "m3"};

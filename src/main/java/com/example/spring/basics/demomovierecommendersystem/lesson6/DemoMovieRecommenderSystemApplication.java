@@ -1,4 +1,4 @@
-package com.example.spring.basics.demomovierecommendersystem.lesson4;
+package com.example.spring.basics.demomovierecommendersystem.lesson6;
 
 import java.util.Arrays;
 
@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 /*
- * Autowiring By Type - @Primary
+ * Autowiring - @Qualifier
  */
 
 @SpringBootApplication

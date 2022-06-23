@@ -1,10 +1,12 @@
-package com.example.spring.basics.demomovierecommendersystem.lesson5;
+package com.example.spring.basics.demomovierecommendersystem.lesson6;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@Qualifier("CF")
 public class CollaborativeFilter implements Filter {
     
     public String[] getRecommendations(String movie) {
