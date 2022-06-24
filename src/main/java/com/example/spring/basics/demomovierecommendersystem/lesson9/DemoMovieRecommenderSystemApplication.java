@@ -19,33 +19,33 @@ public class DemoMovieRecommenderSystemApplication {
 	    // ApplicationContext manages the beans and dependencies
 	    ApplicationContext appContext = SpringApplication.run(DemoMovieRecommenderSystemApplication.class, args);
 
-	    //create object of RecommenderImplementation class
-	    // passing name of the filter as constructor argument
-        //RecommenderImplementation recommendor = new RecommenderImplementation(filter);
-	    //RecommenderImplementation recommendor = new RecommenderImplementation(new ContentBasedFilter());
-	    // use ApplicationContext to find which filter is being used
-	    //RecommenderImplementation recommender = appContext.getBean(RecommenderImplementation.class); 
+		    
+	    // Retrieve singleton bean from application context 
+	    ContentBasedFilter filter = appContext.getBean(ContentBasedFilter.class);
 	    
-	    // Retrieve singleton bean from application context thrice
-	    ContentBasedFilter cbf1 = appContext.getBean(ContentBasedFilter.class);
-	    ContentBasedFilter cbf2 = appContext.getBean(ContentBasedFilter.class);
-	    ContentBasedFilter cbf3 = appContext.getBean(ContentBasedFilter.class);
+	    System.out.println("\n ContentBasedFilter bean with singleton scope");
+        System.out.println(filter);
         
-        System.out.println(cbf1);
-        System.out.println(cbf2);
-        System.out.println(cbf3);
+     // Retrieve prototype bean from the singleton bean thrice
+        Movie movie1 = filter.getMovie();
+        Movie movie2 = filter.getMovie();
+        Movie movie3 = filter.getMovie();
         
-     // Retrieve prototype bean from application context thrice
-        CollaborativeFilter cf1 = appContext.getBean(CollaborativeFilter.class);
-        CollaborativeFilter cf2 = appContext.getBean(CollaborativeFilter.class);
-        CollaborativeFilter cf3 = appContext.getBean(CollaborativeFilter.class);
+        System.out.println("\nMovie bean with prototype scope");
+        System.out.println(movie1);
+        System.out.println(movie2);
+        System.out.println(movie3);
         
-        System.out.println(cf1);
-        System.out.println(cf2);
-        System.out.println(cf3);
-        
-        
-        
+        // Print number of instances of each bean
+        System.out.println("\nContentBasedFilter instances created: "+ ContentBasedFilter.getInstances());
+        System.out.println("Movie instances created: "+ Movie.getInstances());
 	}
 
 }
+
+// Mixing Bean Scope
+
+// When a prototype bean is injected into a singleton bean, it loses its prototype behavior and acts as a singleton.
+
+// This problem can be solved in a number of ways. One of them is by using a proxy. We  using the proxyMode element inside the @Scope annotation.
+// @Scope(value=ConfigurableBeanFactory.SCOPE_PROTOTYPE, proxyMode=ScopedProxyMode.TARGET_CLASS)
