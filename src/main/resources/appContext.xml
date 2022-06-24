@@ -1,0 +1,35 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans                    
+            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--  bean definitions -->
+<bean id="contentBasedFilter" 
+class="com.example.spring.basics.demomovierecommendersystem.lesson14.ContentBasedFilter">
+</bean>
+
+<bean id="collaborativeFilter" 
+class="com.example.spring.basics.demomovierecommendersystem.lesson14.CollaborativeFilter">
+</bean>
+
+<bean id="recommenderImplementation" 
+class="com.example.spring.basics.demomovierecommendersystem.lesson14.RecommenderImplementation">
+<!-- Dependency Injection using property tag -->
+<!-- <property name="filter" ref="collaborativeFilter" /> -->
+<!-- dependency injection - using constructor injection -->
+<constructor-arg ref="collaborativeFilter" />
+</bean>
+
+
+</beans>
+
+<!-- 
+The IOC container will read the appContext.xml file and create objects of the classes mentioned in it. It will call the constructor of the class to create the object by giving it the name that we specified as the id. Hence, the following line:
+
+<bean id="contentBasedFilter" 
+class="io.datajek.spring.basics.movierecommendersystem.lesson14.ContentBasedFilter">   
+</bean >   
+translates to:
+
+ContentBasedFilter contentBasedFiler = new ContentBasedFilter();
+ -->
