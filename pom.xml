@@ -17,9 +17,24 @@
 		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
+	
+	<!-- remove the following dependency [ Spring Boot -> Spring transition ] @SpringBootApplication cannot be used anymore
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
+		</dependency>
+		-->
+		
+		<!-- replace it with this dependency: -->
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		</dependency>
+		
+		<!--  also add following spring-context dependency, to use ApplicationContext -->
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context</artifactId>
 		</dependency>
 
 		<dependency>
