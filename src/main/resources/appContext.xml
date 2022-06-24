@@ -8,12 +8,23 @@
 
 <!-- XML Configuration with JAVA Annotations -->
 <!--  enable component scan -->
+<!-- 
 <context:component-scan base-package="com.example.spring.basics.demomovierecommendersystem.lesson14"/>
+ -->
 <!-- Spring will scan everything marked with @Component as well as the @Controller, @Repository, and @Service annotations. -->
+
+<!--  enable detection of dependency injection annotations -->
+<context:annotation-config/>
+<!-- 
+Like the <context:component-scan> tag, the <context:annotation-config> tag can also detect dependency injection annotations, e.g., @Autowired and @Qualifier. But it cannot detect beans annotated with @Component and other stereotype annotations.
+
+If we are using the <context:annotation-config> tag, then we need to declare beans in the XML config file.
+ -->
+
 
 <!--  bean definitions -->
 <!-- ContentBasedFilter and CollaborativeFilter will use @Component annotation -->
-<!-- 
+<!--  to be uncommented for <context:annotation-config> tag -->
 <bean id="contentBasedFilter" 
 class="com.example.spring.basics.demomovierecommendersystem.lesson14.ContentBasedFilter">
 </bean>
@@ -21,7 +32,7 @@ class="com.example.spring.basics.demomovierecommendersystem.lesson14.ContentBase
 <bean id="collaborativeFilter" 
 class="com.example.spring.basics.demomovierecommendersystem.lesson14.CollaborativeFilter">
 </bean>
- -->
+
 <bean id="recommenderImpl" 
 class="com.example.spring.basics.demomovierecommendersystem.lesson14.RecommenderImplementation">
 <!-- Dependency Injection using property tag -->
