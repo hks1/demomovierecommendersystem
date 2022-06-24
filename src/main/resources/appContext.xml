@@ -1,9 +1,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans                    
-            http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.springframework.org/schema/context
+                     http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!-- XML Configuration with JAVA Annotations -->
+<!--  enable component scan -->
+<context:component-scan base-package="com.example.spring.basics.demomovierecommendersystem.lesson14"/>
+<!-- Spring will scan everything marked with @Component as well as the @Controller, @Repository, and @Service annotations. -->
 
 <!--  bean definitions -->
+<!-- ContentBasedFilter and CollaborativeFilter will use @Component annotation -->
+<!-- 
 <bean id="contentBasedFilter" 
 class="com.example.spring.basics.demomovierecommendersystem.lesson14.ContentBasedFilter">
 </bean>
@@ -11,13 +21,13 @@ class="com.example.spring.basics.demomovierecommendersystem.lesson14.ContentBase
 <bean id="collaborativeFilter" 
 class="com.example.spring.basics.demomovierecommendersystem.lesson14.CollaborativeFilter">
 </bean>
-
-<bean id="recommenderImplementation" 
+ -->
+<bean id="recommenderImpl" 
 class="com.example.spring.basics.demomovierecommendersystem.lesson14.RecommenderImplementation">
 <!-- Dependency Injection using property tag -->
 <!-- <property name="filter" ref="collaborativeFilter" /> -->
 <!-- dependency injection - using constructor injection -->
-<constructor-arg ref="collaborativeFilter" />
+<!-- <constructor-arg ref="collaborativeFilter" />  -->
 </bean>
 
 

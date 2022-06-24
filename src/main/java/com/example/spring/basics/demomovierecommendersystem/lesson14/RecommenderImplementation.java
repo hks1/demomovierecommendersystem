@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 public class RecommenderImplementation {
     
     // use filter interface to select filter
+    @Autowired
+    @Qualifier("contentBasedFilter")
     private Filter filter;
     
     /*

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Primary;
 
+@Component
 public class ContentBasedFilter implements Filter {
     
     public String[] getRecommendations(String movie) {

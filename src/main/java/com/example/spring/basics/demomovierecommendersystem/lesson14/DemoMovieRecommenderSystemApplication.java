@@ -25,7 +25,9 @@ public class DemoMovieRecommenderSystemApplication {
 	    // to this:
 	    //AnnotationConfigApplicationContext appContext = new AnnotationConfigApplicationContext(DemoMovieRecommenderSystemApplication.class);
 	    
-	    // XML Application Configuration
+	    // --XML Application Configuration
+	    // XML  Configuration with Java annotations
+	    // The recommenderImpl bean is declared in appContext.xml while its dependency is declared using @Component annotation.
 	    ClassPathXmlApplicationContext appContext = new ClassPathXmlApplicationContext("appContext.xml");
 	    
 	    // check the beans which have been loaded
@@ -36,7 +38,10 @@ public class DemoMovieRecommenderSystemApplication {
 	    //RecommenderImplementation recommender = appContext.getBean(RecommenderImplementation.class); 
 	    
 	    // XML Application Configuration
-	    RecommenderImplementation recommender = appContext.getBean("recommenderImplementation", RecommenderImplementation.class);
+	    RecommenderImplementation recommender = appContext.getBean("recommenderImpl", RecommenderImplementation.class);
+	    
+	    // print dependency
+	    System.out.println("\nDependency" + recommender.getFilter());
         
         //call method to get recommendations
         String[] result = recommender.recommendMovies("Finding Dory");
